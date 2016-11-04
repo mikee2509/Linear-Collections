@@ -1,0 +1,16 @@
+2 struktury liniowe
+taki sam interfejs
+
+2 operacje żby udowodnić która struktura jest szybsza
+
+make check do testowania przez SSH
+
+komentować testy - projektować struktury od góry do dołu
+prealokować więcej niż potrzeba w tablicy
+prealokacja wymaga współczynnika (nie robić stałej) - google search how much (50-100 %)
+100 + 1 -> alokujemy miejsce na 150
+getsize ma zwracać 101 nie 150
+
+main zbuduje się tylko jak przejdą testy
+
+
