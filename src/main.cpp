@@ -6,24 +6,26 @@
 #include "LinkedList.h"
 #include <vector>
 #include <math.h>
-//namespace
-//{
-//
-//    template <typename T>
+namespace
+{
+
+    template <typename T>
+    using LinearCollection = aisdi::Vector<T>;
 //    using LinearCollection = aisdi::LinkedList<T>;
-//
+
 //    void perfomTest()
 //    {
 //        LinearCollection<std::string> collection;
 //        collection.append("TODO");
 //    }
-//
-//} // namespace
+
+} // namespace
 
 
 int main()
 {
-    std::vector<int> test = {15, 2, 3};
+    std::cout << "Works!" << std::endl;
+
 
 //  const std::size_t repeatCount = argc > 1 ? std::atoll(argv[1]) : 10000;
 //  for (std::size_t i = 0; i < repeatCount; ++i)

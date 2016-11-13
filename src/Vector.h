@@ -27,54 +27,52 @@ public:
     using const_iterator = ConstIterator;
 
 private:
-    value_type *vec;
     size_type size; //Number of elements currently stored in vector
     size_type capacity; //Current capacity of allocated space
+    value_type *vec;
     const double INCREASE_FACTOR = 0.5; //Factor by which the capacity will be increased when reallocation is needed
 
 public:
-    Vector()
-    {
-        size = 0;
-        capacity = 0;
-        vec = new value_type[0];
-    }
+    Vector() : size(0), capacity(0), vec(nullptr)
+    {}
 
-    Vector(std::initializer_list<Type> l)
+    Vector(std::initializer_list<Type> l) : size(0), capacity(l.size()),
+                    vec(capacity ? new value_type[capacity] : nullptr)
     {
-        vec = new value_type[l.size()];
-        size = 0;
         for(value_type i : l)
-        {
             vec[size++]=i;
-        }
     }
 
-    Vector(const Vector& other)
+    Vector(const Vector& other) : size(other.size), capacity(other.capacity),
+                    vec(capacity ? new value_type[capacity] : nullptr)
     {
-        (void)other;
-        throw std::runtime_error("TODO");
+        std::copy(other.vec, other.vec + size, vec);
     }
 
-    Vector(Vector&& other)
+    Vector(Vector&& other) : size(other.size), capacity(other.capacity), vec(other.vec)
     {
-        (void)other;
-        throw std::runtime_error("TODO");
+        other.size = 0;
+        other.capacity = 0;
+        other.vec = nullptr;
     }
 
     ~Vector()
-    {}
-
-    Vector& operator=(const Vector& other)
     {
-        (void)other;
-        throw std::runtime_error("TODO");
+        delete[] vec;
     }
 
-    Vector& operator=(Vector&& other)
+    friend void swap(Vector& first, Vector& second)
     {
-        (void)other;
-        throw std::runtime_error("TODO");
+        using std::swap;
+        swap(first.size, second.size);
+        swap(first.capacity, second.capacity);
+        swap(first.vec, second.vec);
+    }
+
+    Vector& operator=(Vector other)
+    {
+        swap(*this, other);
+        return *this;
     }
 
     bool isEmpty() const
@@ -94,8 +92,7 @@ public:
 
     void prepend(const Type& item)
     {
-        (void)item;
-        throw std::runtime_error("TODO");
+        insert(begin(), item);
     }
 
     void insert(const const_iterator& insertPosition, const Type& item)
@@ -110,20 +107,20 @@ public:
         }
         else
         {
-            capacity *= 1 + INCREASE_FACTOR;
+            capacity = capacity>1 ? capacity*(1+INCREASE_FACTOR) : capacity+1;
             value_type *new_space = new value_type[capacity];
             size_type i=0;
 
             //Copy all the elements up to insertPosition
             for(it=begin(); it!=insertPosition; ++it, ++i)
-                new_space[i] = vec[i];
+                new_space[i] = *it;
 
             //Copy the item at inserPosition
             new_space[i++] = item;
 
             //Copy the rest of the vector
-            for(it=insertPosition+1; it!=end()+1; ++it, ++i)
-                new_space[i] = vec[i-1];
+            for(; it!=end(); ++it, ++i)
+                new_space[i] = *it;
 
             delete[] vec;
             vec = new_space;
