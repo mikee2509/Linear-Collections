@@ -2,27 +2,28 @@
 #include <cstdlib>
 #include <string>
 #include <iostream>
-
 #include "Vector.h"
 #include "LinkedList.h"
-
+#include <vector>
+#include <math.h>
 //namespace
 //{
 //
-//template <typename T>
-//using LinearCollection = aisdi::LinkedList<T>;
+//    template <typename T>
+//    using LinearCollection = aisdi::LinkedList<T>;
 //
-////void perfomTest()
-////{
-//////  LinearCollection<std::string> collection;
-//////  collection.append("TODO");
-////}
+//    void perfomTest()
+//    {
+//        LinearCollection<std::string> collection;
+//        collection.append("TODO");
+//    }
 //
 //} // namespace
 
-int main(int argc, char** argv)
+
+int main()
 {
-    std::cout << "Hello world! (przeszly testy)   " << argc << argv[0] << std::endl;
+    std::vector<int> test = {15, 2, 3};
 
 //  const std::size_t repeatCount = argc > 1 ? std::atoll(argv[1]) : 10000;
 //  for (std::size_t i = 0; i < repeatCount; ++i)

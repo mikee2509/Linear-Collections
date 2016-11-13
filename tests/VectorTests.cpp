@@ -20,257 +20,249 @@ using std::end;
 
 BOOST_AUTO_TEST_SUITE(VectorTests)
 
-BOOST_AUTO_TEST_CASE(vectorTest1)
+template <typename T>
+void thenCollectionContainsValues(const LinearCollection<T>& collection,
+        std::initializer_list<int> expected)
 {
-    std::cout<< "Moj test Vector!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
+    BOOST_CHECK_EQUAL_COLLECTIONS(begin(collection), end(collection),
+            begin(expected), end(expected));
 }
 
-//template <typename T>
-//void thenCollectionContainsValues(const LinearCollection<T>& collection,
-//                                  std::initializer_list<int> expected)
-//{
-//  BOOST_CHECK_EQUAL_COLLECTIONS(begin(collection), end(collection),
-//                                begin(expected), end(expected));
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollection_WhenCreatedWithDefaultConstructor_ThenItIsEmpty,
-//                              T,
-//                              TestedTypes)
-//{
-//  const LinearCollection<T> collection;
-//
-//  BOOST_CHECK(collection.isEmpty());
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenAddingItem_ThenItIsNoLongerEmpty,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//
-//  collection.append(T{});
-//
-//  BOOST_CHECK(!collection.isEmpty());
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenGettingIterators_ThenBeginEqualsEnd,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//
-//  BOOST_CHECK(begin(collection) == end(collection));
-//  BOOST_CHECK(const_cast<const LinearCollection<T>&>(collection).begin() == collection.end());
-//  BOOST_CHECK(collection.cbegin() == collection.cend());
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenGettingIterator_ThenBeginIsNotEnd,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//  collection.append(T{});
-//
-//  BOOST_CHECK(collection.begin() != collection.end());
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollectionWithOneElement_WhenIterating_ThenElementIsReturned,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//  collection.append(753);
-//
-//  auto it = collection.begin();
-//
-//  BOOST_CHECK_EQUAL(*it, 753);
-//  BOOST_CHECK(++it == collection.end());
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenPostIncrementing_ThenPreviousPositionIsReturned,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//  collection.append(T{});
-//
-//  auto it = collection.begin();
-//  auto postIncrementedIt = it++;
-//
-//  BOOST_CHECK(postIncrementedIt == collection.begin());
-//  BOOST_CHECK(it == collection.end());
-//  BOOST_CHECK(postIncrementedIt == collection.cbegin());
-//  BOOST_CHECK(it == collection.cend());
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenPreIncrementing_ThenNewPositionIsReturned,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//  collection.append(T{});
-//
-//  auto it = collection.begin();
-//  auto preIncrementedIt = ++it;
-//
-//  BOOST_CHECK(preIncrementedIt == it);
-//  BOOST_CHECK(it == collection.end());
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEndIterator_WhenIncrementing_ThenOperationThrows,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//
-//  BOOST_CHECK_THROW(collection.end()++, std::out_of_range);
-//  BOOST_CHECK_THROW(++(collection.end()), std::out_of_range);
-//  BOOST_CHECK_THROW(collection.cend()++, std::out_of_range);
-//  BOOST_CHECK_THROW(++(collection.cend()), std::out_of_range);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEndIterator_WhenDecrementing_ThenIteratorPointsToLastItem,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//  collection.append(1);
-//  collection.append(2);
-//
-//  auto it = collection.end();
-//  --it;
-//
-//  BOOST_CHECK_EQUAL(*it, 2);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenPreDecrementing_ThenNewIteratorValueIsReturned,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//  collection.append(1);
-//
-//  auto it = collection.end();
-//  auto preDecremented = --it;
-//
-//  BOOST_CHECK(it == preDecremented);
-//  BOOST_CHECK_EQUAL(*it, 1);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenPostDecrementing_ThenOldIteratorValueIsReturned,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//  collection.append(1);
-//
-//  auto it = collection.end();
-//  auto postDecremented = it--;
-//
-//  BOOST_CHECK(postDecremented == collection.end());
-//  BOOST_CHECK_EQUAL(*it, 1);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenBeginIterator_WhenDecrementing_ThenOperationThrows,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//
-//  BOOST_CHECK_THROW(collection.begin()--, std::out_of_range);
-//  BOOST_CHECK_THROW(--(collection.begin()), std::out_of_range);
-//  BOOST_CHECK_THROW(collection.cbegin()--, std::out_of_range);
-//  BOOST_CHECK_THROW(--(collection.cbegin()), std::out_of_range);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEndIterator_WhenDereferencing_ThenOperationThrows,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//
-//  BOOST_CHECK_THROW(*collection.end(), std::out_of_range);
-//  BOOST_CHECK_THROW(*collection.cend(), std::out_of_range);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenConstIterator_WhenDereferencing_ThenItemIsReturned,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 10, 20, 30 };
-//
-//  auto it = ++collection.cbegin();
-//
-//  BOOST_CHECK_EQUAL(*it, 20);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenDereferencing_ThenItemCanBeChanged,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 10, 20, 30 };
-//
-//  auto it = ++begin(collection);
-//  *it = 500;
-//
-//  thenCollectionContainsValues(collection, { 10, 500, 30 });
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenAddingInteger_ThenAdvancedIteratorIsReturned,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 2001, 2010, 2051 };
-//
-//  auto it = begin(collection);
-//
-//  BOOST_CHECK(it + 3 == end(collection));
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenSubstractingInteger_ThenChangedIteratorIsReturned,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 2001, 2010, 2051 };
-//
-//  auto it = end(collection);
-//
-//  BOOST_CHECK(it - 2 == ++begin(collection));
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenAddingItem_ThenItemIsInCollection,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//
-//  collection.append(42);
-//
-//  thenCollectionContainsValues(collection, { 42 });
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollection_WhenInitializingFromList_ThenAllItemsAreInCollection,
-//                              T,
-//                              TestedTypes)
-//{
-//  const LinearCollection<T> collection = { 1410, 753, 1789 };
-//
-//  thenCollectionContainsValues(collection, { 1410, 753, 1789 });
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenCreatingCopy_ThenAllItemsAreCopied,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 1410, 753, 1789 };
-//  LinearCollection<T> other{collection};
-//
-//  collection.append(1024);
-//
-//  thenCollectionContainsValues(collection, { 1410, 753, 1789, 1024 });
-//  thenCollectionContainsValues(other, { 1410, 753, 1789 });
-//}
-//
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollection_WhenCreatedWithDefaultConstructor_ThenItIsEmpty, T, TestedTypes)
+{
+    const LinearCollection<T> collection;
+
+    BOOST_CHECK(collection.isEmpty());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenAddingItem_ThenItIsNoLongerEmpty,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+
+  collection.append(T{});
+
+  BOOST_CHECK(!collection.isEmpty());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenGettingIterators_ThenBeginEqualsEnd,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+
+  BOOST_CHECK(begin(collection) == end(collection));
+  BOOST_CHECK(const_cast<const LinearCollection<T>&>(collection).begin() == collection.end());
+  BOOST_CHECK(collection.cbegin() == collection.cend());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenGettingIterator_ThenBeginIsNotEnd,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+  collection.append(T{});
+
+  BOOST_CHECK(collection.begin() != collection.end());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollectionWithOneElement_WhenIterating_ThenElementIsReturned,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+  collection.append(753);
+
+  auto it = collection.begin();
+  BOOST_CHECK_EQUAL(*it, 753);
+  BOOST_CHECK(++it == collection.end());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenPostIncrementing_ThenPreviousPositionIsReturned,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+  collection.append(T{});
+
+  auto it = collection.begin();
+  auto postIncrementedIt = it++;
+
+  BOOST_CHECK(postIncrementedIt == collection.begin());
+  BOOST_CHECK(it == collection.end());
+  BOOST_CHECK(postIncrementedIt == collection.cbegin());
+  BOOST_CHECK(it == collection.cend());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenPreIncrementing_ThenNewPositionIsReturned,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+  collection.append(T{});
+
+  auto it = collection.begin();
+  auto preIncrementedIt = ++it;
+
+  BOOST_CHECK(preIncrementedIt == it);
+  BOOST_CHECK(it == collection.end());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEndIterator_WhenIncrementing_ThenOperationThrows,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+
+  BOOST_CHECK_THROW(collection.end()++, std::out_of_range);
+  BOOST_CHECK_THROW(++(collection.end()), std::out_of_range);
+  BOOST_CHECK_THROW(collection.cend()++, std::out_of_range);
+  BOOST_CHECK_THROW(++(collection.cend()), std::out_of_range);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEndIterator_WhenDecrementing_ThenIteratorPointsToLastItem,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+  collection.append(1);
+  collection.append(2);
+
+  auto it = collection.end();
+  --it;
+
+  BOOST_CHECK_EQUAL(*it, 2);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenPreDecrementing_ThenNewIteratorValueIsReturned,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+  collection.append(1);
+
+  auto it = collection.end();
+  auto preDecremented = --it;
+
+  BOOST_CHECK(it == preDecremented);
+  BOOST_CHECK_EQUAL(*it, 1);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenPostDecrementing_ThenOldIteratorValueIsReturned,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+  collection.append(1);
+
+  auto it = collection.end();
+  auto postDecremented = it--;
+
+  BOOST_CHECK(postDecremented == collection.end());
+  BOOST_CHECK_EQUAL(*it, 1);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenBeginIterator_WhenDecrementing_ThenOperationThrows,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+
+  BOOST_CHECK_THROW(collection.begin()--, std::out_of_range);
+  BOOST_CHECK_THROW(--(collection.begin()), std::out_of_range);
+  BOOST_CHECK_THROW(collection.cbegin()--, std::out_of_range);
+  BOOST_CHECK_THROW(--(collection.cbegin()), std::out_of_range);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEndIterator_WhenDereferencing_ThenOperationThrows,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+
+  BOOST_CHECK_THROW(*collection.end(), std::out_of_range);
+  BOOST_CHECK_THROW(*collection.cend(), std::out_of_range);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenConstIterator_WhenDereferencing_ThenItemIsReturned,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 10, 20, 30 };
+
+  auto it = ++collection.cbegin();
+
+  BOOST_CHECK_EQUAL(*it, 20);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenDereferencing_ThenItemCanBeChanged,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 10, 20, 30 };
+
+  auto it = ++begin(collection);
+  *it = 500;
+
+  thenCollectionContainsValues(collection, { 10, 500, 30 });
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenAddingInteger_ThenAdvancedIteratorIsReturned,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 2001, 2010, 2051 };
+
+  auto it = begin(collection);
+
+  BOOST_CHECK(it + 3 == end(collection));
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenIterator_WhenSubstractingInteger_ThenChangedIteratorIsReturned,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 2001, 2010, 2051 };
+
+  auto it = end(collection);
+
+  BOOST_CHECK(it - 2 == ++begin(collection));
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenAddingItem_ThenItemIsInCollection,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+
+  collection.append(42);
+
+  thenCollectionContainsValues(collection, { 42 });
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollection_WhenInitializingFromList_ThenAllItemsAreInCollection,
+                              T,
+                              TestedTypes)
+{
+  const LinearCollection<T> collection = { 1410, 753, 1789 };
+
+  thenCollectionContainsValues(collection, { 1410, 753, 1789 });
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenCreatingCopy_ThenAllItemsAreCopied,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 1410, 753, 1789 };
+  LinearCollection<T> other{collection};
+
+  collection.append(1024);
+
+  thenCollectionContainsValues(collection, { 1410, 753, 1789, 1024 });
+  thenCollectionContainsValues(other, { 1410, 753, 1789 });
+}
+
 //BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenCreatingCopy_ThenBothCollectionsAreEmpty,
 //                              T,
 //                              TestedTypes)
