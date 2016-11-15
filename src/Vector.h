@@ -128,27 +128,43 @@ public:
         ++size;
     }
 
-    Type popFirst()
+    value_type popFirst()
     {
-        throw std::runtime_error("TODO");
+        if(isEmpty()) throw std::logic_error("Vector is empty");
+        value_type temp = *begin();
+        erase(begin());
+        return temp;
     }
 
-    Type popLast()
+    value_type popLast()
     {
-        throw std::runtime_error("TODO");
+        if(isEmpty()) throw std::logic_error("Vector is empty");
+        value_type temp = *(end()-1);
+        --size;
+        return temp;
     }
 
     void erase(const const_iterator& possition)
     {
-        (void)possition;
-        throw std::runtime_error("TODO");
+        erase(possition, possition+1);
     }
 
     void erase(const const_iterator& firstIncluded, const const_iterator& lastExcluded)
     {
-        (void)firstIncluded;
-        (void)lastExcluded;
-        throw std::runtime_error("TODO");
+        if(isEmpty()) throw std::out_of_range("Vector is empty");
+
+        iterator it1, it2;
+        size_type numErased = 0;
+
+        //Check whether firstIncluded is not after lastExcluded in the vector
+        for(it2=firstIncluded; it2!=lastExcluded; ++it2, ++numErased)
+            if(it2==end()) throw std::out_of_range("firstIncluded should be before lastExcluded");
+
+        //Copy the elements numErased positions in left direction
+        for(it1=firstIncluded; it2!=end(); ++it1, ++it2)
+            *it1=*it2;
+
+        size -= numErased;
     }
 
     iterator begin()

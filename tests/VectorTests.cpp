@@ -475,246 +475,261 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenInserting_ThenSizeIsUp
   BOOST_CHECK_EQUAL(collection.getSize(), 4);
 }
 
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenPoppingFirst_ThenOperationThrows,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//
-//  BOOST_CHECK_THROW(collection.popFirst(), std::logic_error);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenPoppingLast_ThenOperationThrows,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//
-//  BOOST_CHECK_THROW(collection.popLast(), std::logic_error);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollectionWithSingleItem_WhenPoppingFirst_ThenCollectionIsEmpty,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 420 };
-//
-//  collection.popFirst();
-//
-//  BOOST_CHECK(collection.isEmpty());
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollectionWithSingleItem_WhenPoppingLast_ThenCollectionIsEmpty,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 420 };
-//
-//  collection.popLast();
-//
-//  BOOST_CHECK(collection.isEmpty());
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenPoppingFirst_ThenCollectionSizeIsReduced,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 14, 10 };
-//
-//  collection.popFirst();
-//
-//  BOOST_CHECK_EQUAL(collection.getSize(), 1);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenPoppingLast_ThenCollectionSizeIsReduced,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 14, 10 };
-//
-//  collection.popLast();
-//
-//  BOOST_CHECK_EQUAL(collection.getSize(), 1);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenPoppingFirst_ThenItemIsRemoved,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 300, 8, 480 };
-//
-//  collection.popFirst();
-//
-//  thenCollectionContainsValues(collection, { 8, 480 });
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenPoppingLast_ThenItemIsRemoved,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 300, 8, 480 };
-//
-//  collection.popLast();
-//
-//  thenCollectionContainsValues(collection, { 300, 8 });
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenPoppingFirst_ThenItemsIsReturned,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 101, 202, 303 };
-//
-//  BOOST_CHECK_EQUAL(collection.popFirst(), 101);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenPoppingLast_ThenItemsIsReturned,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 101, 202, 303 };
-//
-//  BOOST_CHECK_EQUAL(collection.popLast(), 303);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenErasing_ThenOperationThrows,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//
-//  BOOST_CHECK_THROW(collection.erase(collection.begin()), std::out_of_range);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingEnd_ThenOperationThrows,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 20, 16 };
-//
-//  BOOST_CHECK_THROW(collection.erase(end(collection)), std::out_of_range);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingBegin_ThenItemIsRemoved,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 22, 41, 31 };
-//
-//  collection.erase(begin(collection));
-//
-//  thenCollectionContainsValues(collection, { 41, 31 });
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingLastItem_ThemItemIsRemoved,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 22, 45, 33 };
-//
-//  collection.erase(--end(collection));
-//
-//  thenCollectionContainsValues(collection, { 22, 45 });
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingMiddleItem_ThenItemIsRemoved,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 22, 51, 48 };
-//
-//  collection.erase(++begin(collection));
-//
-//  thenCollectionContainsValues(collection, { 22, 48 });
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasing_ThenSizeIsReduced,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 1000, 500, 2, 900 };
-//
-//  collection.erase(begin(collection) + 2);
-//
-//  BOOST_CHECK_EQUAL(collection.getSize(), 3);
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollectionWithSingleItem_WhenErasing_ThenCollectionIsEmpty,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 1529 };
-//
-//  collection.erase(begin(collection));
-//
-//  BOOST_CHECK(collection.isEmpty());
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingEmptyRange_ThenNothingHappens,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 19, 42, 11 };
-//
-//  collection.erase(begin(collection), begin(collection));
-//
-//  thenCollectionContainsValues(collection, { 19, 42, 11 });
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingRangeFromBegin_ThenItemsAreRemoved,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 19, 42, 11 };
-//
-//  collection.erase(begin(collection), begin(collection) + 2);
-//
-//  thenCollectionContainsValues(collection, { 11 });
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_whenErasingRangeToEnd_ThenItemsAreRemoved,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 20, 1, 45 };
-//
-//  collection.erase(begin(collection) + 1, end(collection));
-//
-//  thenCollectionContainsValues(collection, { 20 });
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingSingleItemRange_ThenItemIsRemoved,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 2001, 2010, 2051, 3001 };
-//
-//  collection.erase(begin(collection) + 1, begin(collection) + 2);
-//
-//  thenCollectionContainsValues(collection, { 2001, 2051, 3001 });
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingWholeRange_ThenCollectinIsEmpty,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 400, 403, 404 };
-//
-//  collection.erase(begin(collection), end(collection));
-//
-//  BOOST_CHECK(collection.isEmpty());
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingRange_ThenSizeIsUpdated,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection = { 23, 10, 20, 16 };
-//
-//  collection.erase(begin(collection) + 1, end(collection) - 1);
-//
-//  BOOST_CHECK_EQUAL(collection.getSize(), 2);
-//}
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenPoppingFirst_ThenOperationThrows,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+
+  BOOST_CHECK_THROW(collection.popFirst(), std::logic_error);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenPoppingLast_ThenOperationThrows,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+
+  BOOST_CHECK_THROW(collection.popLast(), std::logic_error);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollectionWithSingleItem_WhenPoppingFirst_ThenCollectionIsEmpty,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 420 };
+
+  collection.popFirst();
+
+  BOOST_CHECK(collection.isEmpty());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollectionWithSingleItem_WhenPoppingLast_ThenCollectionIsEmpty,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 420 };
+
+  collection.popLast();
+
+  BOOST_CHECK(collection.isEmpty());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenPoppingFirst_ThenCollectionSizeIsReduced,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 14, 10 };
+
+  collection.popFirst();
+
+  BOOST_CHECK_EQUAL(collection.getSize(), 1);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenPoppingLast_ThenCollectionSizeIsReduced,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 14, 10 };
+
+  collection.popLast();
+
+  BOOST_CHECK_EQUAL(collection.getSize(), 1);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenPoppingFirst_ThenItemIsRemoved,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 300, 8, 480 };
+
+  collection.popFirst();
+
+  thenCollectionContainsValues(collection, { 8, 480 });
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenPoppingLast_ThenItemIsRemoved,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 300, 8, 480 };
+
+  collection.popLast();
+
+  thenCollectionContainsValues(collection, { 300, 8 });
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenPoppingFirst_ThenItemsIsReturned,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 101, 202, 303 };
+
+  BOOST_CHECK_EQUAL(collection.popFirst(), 101);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenPoppingLast_ThenItemsIsReturned,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 101, 202, 303 };
+
+  BOOST_CHECK_EQUAL(collection.popLast(), 303);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenErasing_ThenOperationThrows,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+
+  BOOST_CHECK_THROW(collection.erase(collection.begin()), std::out_of_range);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingEnd_ThenOperationThrows,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 20, 16 };
+
+  BOOST_CHECK_THROW(collection.erase(end(collection)), std::out_of_range);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingBegin_ThenItemIsRemoved,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 22, 41, 31 };
+
+  collection.erase(begin(collection));
+
+  thenCollectionContainsValues(collection, { 41, 31 });
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingLastItem_ThemItemIsRemoved,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 22, 45, 33 };
+
+  collection.erase(--end(collection));
+
+  thenCollectionContainsValues(collection, { 22, 45 });
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingMiddleItem_ThenItemIsRemoved,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 22, 51, 48 };
+
+  collection.erase(++begin(collection));
+
+  thenCollectionContainsValues(collection, { 22, 48 });
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasing_ThenSizeIsReduced,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 1000, 500, 2, 900 };
+
+  collection.erase(begin(collection) + 2);
+
+  BOOST_CHECK_EQUAL(collection.getSize(), 3);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollectionWithSingleItem_WhenErasing_ThenCollectionIsEmpty,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 1529 };
+
+  collection.erase(begin(collection));
+
+  BOOST_CHECK(collection.isEmpty());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingEmptyRange_ThenNothingHappens,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 19, 42, 11 };
+
+  collection.erase(begin(collection), begin(collection));
+
+  thenCollectionContainsValues(collection, { 19, 42, 11 });
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingRangeFromBegin_ThenItemsAreRemoved,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 19, 42, 11 };
+
+  collection.erase(begin(collection), begin(collection) + 2);
+
+  thenCollectionContainsValues(collection, { 11 });
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_whenErasingRangeToEnd_ThenItemsAreRemoved,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 20, 1, 45 };
+
+  collection.erase(begin(collection) + 1, end(collection));
+
+  thenCollectionContainsValues(collection, { 20 });
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingSingleItemRange_ThenItemIsRemoved,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 2001, 2010, 2051, 3001 };
+
+  collection.erase(begin(collection) + 1, begin(collection) + 2);
+
+  thenCollectionContainsValues(collection, { 2001, 2051, 3001 });
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingWholeRange_ThenCollectinIsEmpty,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 400, 403, 404 };
+
+  collection.erase(begin(collection), end(collection));
+
+  BOOST_CHECK(collection.isEmpty());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingRange_ThenSizeIsUpdated,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 23, 10, 20, 16 };
+
+  collection.erase(begin(collection) + 1, end(collection) - 1);
+
+  BOOST_CHECK_EQUAL(collection.getSize(), 2);
+}
+
+
+///My added tests:
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingFromEndtoBegin_ThenOperationThrows,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection = { 20, 16, 32, 54, 5, 8 };
+
+  BOOST_CHECK_THROW(collection.erase(end(collection)-1, begin(collection)+1), std::out_of_range);
+
+  BOOST_CHECK_EQUAL(collection.getSize(), 6);
+}
+
 
 // ConstIterator is tested via Iterator methods.
 // If Iterator methods are to be changed, then new ConstIterator tests are required.
