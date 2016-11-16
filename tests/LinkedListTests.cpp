@@ -21,38 +21,33 @@ using std::end;
 
 BOOST_AUTO_TEST_SUITE(LinkedListTests)
 
-BOOST_AUTO_TEST_CASE(listTest1)
+template <typename T>
+void thenCollectionContainsValues(const LinearCollection<T>& collection,
+                                  std::initializer_list<int> expected)
 {
-    std::cout << "Moj test List!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
+  BOOST_CHECK_EQUAL_COLLECTIONS(begin(collection), end(collection),
+                                begin(expected), end(expected));
 }
 
-//template <typename T>
-//void thenCollectionContainsValues(const LinearCollection<T>& collection,
-//                                  std::initializer_list<int> expected)
-//{
-//  BOOST_CHECK_EQUAL_COLLECTIONS(begin(collection), end(collection),
-//                                begin(expected), end(expected));
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollection_WhenCreatedWithDefaultConstructor_ThenItIsEmpty,
-//                              T,
-//                              TestedTypes)
-//{
-//  const LinearCollection<T> collection;
-//
-//  BOOST_CHECK(collection.isEmpty());
-//}
-//
-//BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenAddingItem_ThenItIsNoLongerEmpty,
-//                              T,
-//                              TestedTypes)
-//{
-//  LinearCollection<T> collection;
-//
-//  collection.append(T{});
-//
-//  BOOST_CHECK(!collection.isEmpty());
-//}
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenCollection_WhenCreatedWithDefaultConstructor_ThenItIsEmpty,
+                              T,
+                              TestedTypes)
+{
+  const LinearCollection<T> collection;
+
+  BOOST_CHECK(collection.isEmpty());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenAddingItem_ThenItIsNoLongerEmpty,
+                              T,
+                              TestedTypes)
+{
+  LinearCollection<T> collection;
+
+  collection.append(T{});
+
+  BOOST_CHECK(!collection.isEmpty());
+}
 //
 //BOOST_AUTO_TEST_CASE_TEMPLATE(GivenEmptyCollection_WhenGettingIterators_ThenBeginEqualsEnd,
 //                              T,
