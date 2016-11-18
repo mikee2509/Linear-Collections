@@ -10,14 +10,16 @@ namespace
 {
 
 template <typename T>
-    //using LinearCollection = aisdi::Vector<T>;
-    using LinearCollection = aisdi::LinkedList<T>;
+    //using LinearCollection = aisdi::LinkedList<T>;
+    using LinearCollection = aisdi::Vector<T>;
 
-void perfomTest(int times)
+void perfomTest(long long times)
 {
     LinearCollection<std::string> collection;
-    for(int i = 0; i>times; ++i)
+    for(long long i = 0; i<times; ++i)
         collection.append("TODO");
+    for(long long i = 0; i<times; ++i)
+        collection.prepend("TODO");
 }
 
 } // namespace
@@ -25,9 +27,10 @@ void perfomTest(int times)
 
 int main(int argc, char **argv)
 {
-    std::cout << "Started." << std::endl;
+    //std::cout << "LinearCollection = LinkedList" << std::endl;
+    std::cout << "LinearCollection = Vector" << std::endl;
 
-    const int repeatCount = argc > 1 ? std::atoll(argv[1]) : 10000;
+    const long long repeatCount = argc > 1 ? std::atoll(argv[1]) : 10000;
     perfomTest(repeatCount);
 
     std::cout << "Finished!" << std::endl;

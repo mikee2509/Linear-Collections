@@ -169,12 +169,12 @@ public:
 
     void insert(const const_iterator& insertPosition, const Type& item)
     {
-        node *nd = new node(item);
-        if(isEmpty()) addFirstNode(nd);
-        else if(insertPosition == begin()) prepend(item);
+        if(insertPosition == begin()) prepend(item);
         else if(insertPosition == end()) append(item);
+        else if(isEmpty()) addFirstNode(new node(item));
         else
         {
+            node *nd = new node(item);
             node *temp = insertPosition.element;
             nd->next = temp;
             nd->prev = temp->prev;

@@ -85,6 +85,11 @@ public:
         return size;
     }
 
+    size_type getCapacity() const
+    {
+        return capacity;
+    }
+
     void append(const Type& item)
     {
         insert(end(), item);
@@ -100,8 +105,8 @@ public:
         iterator it;
         if(capacity>size)
         {
-
-            for(it=end(); it!=insertPosition; --it)
+            ++size;
+            for(it=end()-1; it!=insertPosition; --it)
                 *it=*(it-1);
             *it = item;
         }
@@ -124,8 +129,9 @@ public:
 
             delete[] vec;
             vec = new_space;
+            ++size;
         }
-        ++size;
+
     }
 
     value_type popFirst()
